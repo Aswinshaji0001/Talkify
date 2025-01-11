@@ -31,7 +31,7 @@ const Home = ({ setUser, setProfile }) => {
                                 <img src="/logo.png" alt="user"/>
                             </div>
                             <div className="user-info">
-                                <h3>userss</h3>
+                                <h3>Felix</h3>
                             </div>
                         </div>
                         <div className="user-item">
@@ -39,7 +39,7 @@ const Home = ({ setUser, setProfile }) => {
                                 <img src="/logo.png" alt="user"/>
                             </div>
                             <div className="user-info">
-                                <h3>userss</h3>
+                                <h3>Arjun</h3>
                             </div>
                         </div>
                         <div className="user-item">
@@ -47,7 +47,7 @@ const Home = ({ setUser, setProfile }) => {
                                 <img src="/logo.png" alt="user"/>
                             </div>
                             <div className="user-info">
-                                <h3>userss</h3>
+                                <h3>Annan</h3>
                             </div>
                         </div>
                         <div className="user-item">
@@ -55,11 +55,15 @@ const Home = ({ setUser, setProfile }) => {
                                 <img src="/logo.png" alt="user"/>
                             </div>
                             <div className="user-info">
-                                <h3>userss</h3>
+                                <h3>Broi</h3>
                             </div>
                         </div>
+                       
                         
                 </div>
+                <div className="chat">
+                            <img src="/chat.png" alt="" />
+                        </div>
             </div>
         </div>
     )

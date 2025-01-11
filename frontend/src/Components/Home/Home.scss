@@ -10,17 +10,18 @@
     .content {
         width: 68%;
         height: 45vh;
-        border: 1px solid black;
         text-align: center;
         padding: 1em;
-        background-color: #ffffff;
+        background-color: #1585e8;
+        border: 1px solid black;
+        position: relative;
 
         .heads {
             height: auto;
             font-family: "Montserrat", serif;
             font-weight: 700;
-            font-size: 30px;
-            color: rgb(0, 255, 200);
+            font-size: 20px;
+            color:rgb(0, 255, 200);
         }
 
         .user-list {
@@ -28,16 +29,21 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1px;
+            gap: 5px;
+            
+            width: 100%;
 
             .user-item {
                 display: flex;
                 align-items: center;
-                background-color: #106EBE;
-                padding: 5px;
-                width: 100%;
+                background-color: #fbfbfb;
+
+                width: 102%;
+                padding: 1px;   
+                border-radius: 8px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 transition: transform 0.3s ease-in-out;
+                color: black;
                
 
                
@@ -60,9 +66,21 @@
                         font-family: "Dosis", sans-serif;
                         font-weight: 600;
                         font-size: 18px;
-                        color: rgb(0, 255, 200);
+                        color: rgb(0, 0, 0);
                     }
                 }
+            
+            }
+        }
+        .chat{
+            position: absolute;
+            right: 0;
+            width: 70px;
+            height: 70px;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
         }
     }
