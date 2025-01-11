@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rouge+Script&display=swap');
+.nav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    nav{
+        width: 70%;
+        height: 7vh;
+        background-color:#106EBE;
+        color: rgb(0, 255, 200);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .left{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2%;
+            .logo{
+                width: 50px;
+                height: 50px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .monserat {
+                font-family: "Montserrat", serif;
+                font-optical-sizing: auto;
+                font-weight: 700;
+                font-style: normal;
+                font-size: 32px;
+              }
+              
+        }
+        .right{ 
+            width: 15%;           
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            .profilee{
+                width: 50px;
+                height: 50px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 100%;
+                  
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}
