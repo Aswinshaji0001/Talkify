@@ -95,10 +95,13 @@ const Chat = ({ setUser, setProfile }) => {
                                 alignSelf: message.senderId === userid ? 'flex-end' : 'flex-start',
                             }}
                         >
-                            <h3>{message.message} {message.sender} </h3>
+                            <h2>{message.message} {message.sender} </h2>
                             <span className="time">
-                                {message.date} <br></br> {message.time}
+                                <h5>{message.date}</h5>
                             </span>
+                            <div>
+                            <h5>{message.time}</h5>
+                            </div>
                         </div>
                     </div>
                 ))}

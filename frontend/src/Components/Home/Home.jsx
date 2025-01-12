@@ -14,18 +14,22 @@ const Home = ({ setUser, setProfile }) => {
     }, [])
 
     const getProfile = async () => {
+        if(value!==null){
         const res = await axios.get("http://localhost:3000/api/profile", {
             headers: { "Authorization": `Bearer ${value}` }
         })
         if (res.status === 201) {
-            if(!value){
-                navigate("/login")
-            }
             setUser(res.data.data.username)
             setProfile(res.data.data.profile)
-        } else {
+            }  
+         else {
             alert("failed")
         }
+        }
+    else{
+        navigate("/login")
+    }
+
     }
     const getMembers = async()=>{
         const res = await axios.get("http://localhost:3000/api/getmembers",{ headers: { "Authorization": `Bearer ${value}` } })

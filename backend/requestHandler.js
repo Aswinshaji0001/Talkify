@@ -185,7 +185,7 @@ export async function sendMessage(req,res) {
         const uid = req.user.userId;
         const {recieverId,message,date,time} = req.body;
         const data = await chatSchema.create({senderId:uid,recieverId,message,date,time})   
-        const data1 = await memberSchema.create({senderId:uid,recieverId})
+        const data1 = await memberSchema.create({senderId:uid,recieverId:recieverId})
         return res.status(201).send({data,data1})   
  
   } catch (error) {
@@ -226,9 +226,8 @@ export async function getMessages(req, res) {
 export async function getMembers(req, res) {
   try {
     const id = req.user.userId;
-    const data = await memberSchema.distinct("receiverId", { senderId: id });
-
-    return res.status(201).send(data); // Return unique members
+    const data = await memberSchema.find({ senderId: id });   
+    return res.status(201).send(data); 
   } catch (error) {
     return res.status(404).send({ msg: error });
   }
