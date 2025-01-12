@@ -225,9 +225,18 @@ export async function getMessages(req, res) {
 
 export async function getMembers(req, res) {
   try {
-    const id = req.user.userId;
-    const data = await memberSchema.find({ senderId: id });   
-    return res.status(201).send(data); 
+    const _id = req.user.userId;
+    const receivers=await memberSchema.find({$or:[{senderId:_id},{recieverId:_id}]});
+        const chatMemberPromises = receivers.map(async (receiver) => {
+            if(receiver.senderId==_id)
+                return await loginSchema.findOne({ _id: receiver.recieverId },{username:1,profile:1});
+            if(receiver.recieverId==_id)
+                return await loginSchema.findOne({ _id: receiver.senderId },{username:1,profile:1});
+        });
+        const chatMembers = await Promise.all(chatMemberPromises);  
+        console.log(chatMembers);
+        
+    return res.status(201).send({chatMembers}); 
   } catch (error) {
     return res.status(404).send({ msg: error });
   }

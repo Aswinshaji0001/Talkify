@@ -6,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom'
 const Home = ({ setUser, setProfile }) => {
     const navigate = useNavigate();
     const value = localStorage.getItem('Auth')
+    const [chatMembers,setChatMembers]=useState([]);
+
   
 
     useEffect(() => {
@@ -34,52 +36,31 @@ const Home = ({ setUser, setProfile }) => {
     const getMembers = async()=>{
         const res = await axios.get("http://localhost:3000/api/getmembers",{ headers: { "Authorization": `Bearer ${value}` } })
         if(res.status==201){
+            setChatMembers([...new Map(res.data.chatMembers.map(member => [member._id, member])).values()]);
             console.log(res);
         }
         else{
             alert("failed")
         }
     }
+console.log(chatMembers);
 
     return (
         <div className='home'>
             <div className="content">
                 <h1 className='heads'>ALL CHATS</h1>
                 <div className="user-list">
+                    {
+                    chatMembers.map((member,ind)=>
                         <div className="user-item">
                             <div className="profile-pic">
-                                <img src="/logo.png" alt="user"/>
+                                <img src={member.profile} alt="user"/>
                             </div>
                             <div className="user-info">
-                                <Link to="/chat"><h3>Felix</h3></Link>
+                                <Link to={`/chat/${member._id}`}><h3>{member.username}</h3></Link>
                             </div>
                         </div>
-                        <div className="user-item">
-                            <div className="profile-pic">
-                                <img src="/logo.png" alt="user"/>
-                            </div>
-                            <div className="user-info">
-                                <h3>Arjun</h3>
-                            </div>
-                        </div>
-                        <div className="user-item">
-                            <div className="profile-pic">
-                                <img src="/logo.png" alt="user"/>
-                            </div>
-                            <div className="user-info">
-                                <h3>Annan</h3>
-                            </div>
-                        </div>
-                        <div className="user-item">
-                            <div className="profile-pic">
-                                <img src="/logo.png" alt="user"/>
-                            </div>
-                            <div className="user-info">
-                                <h3>Broi</h3>
-                            </div>
-                        </div>
-                       
-                        
+                            )}     
                 </div>
                 <div className="chat">
                             <Link to="/contacts"><img src="/chat.png" alt="" /></Link>

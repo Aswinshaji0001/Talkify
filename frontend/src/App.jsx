@@ -11,6 +11,7 @@ import Home from './Components/Home/Home';
 import Nav from './Components/Nav/Nav';
 import Contacts from './Components/Contacts/Contacts';
 import Chat from './Components/Chat/Chat';
+import Edit from './Components/Edit/Edit'
 
 function App() {
   const [user,setUser]=useState("")
@@ -19,13 +20,14 @@ function App() {
   return (
     <>
      <BrowserRouter>
-     <Nav user={user} profile={profile}></Nav>
+     {user&&<Nav user={user} profile={profile}></Nav>}
      <Routes>
       <Route path='/login' Component={Login}></Route>
       <Route path='/' element={<Home setUser={setUser} setProfile={setProfile}/>}></Route>
       <Route path='/contacts' element={<Contacts setUser={setUser} setProfile={setProfile}/>}></Route>
       <Route path='/chat/:id' element={<Chat setUser={setUser} setProfile={setProfile}/>}></Route>
       <Route path='/signup' Component={Signup}></Route>
+      <Route path='/edit' Component={Edit}></Route>
       <Route path='/email' Component={Email}></Route>
       <Route path='/forgot' Component={Forgot}></Route>
      </Routes>
