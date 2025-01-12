@@ -10,6 +10,7 @@ const Home = ({ setUser, setProfile }) => {
 
     useEffect(() => {
         getProfile();
+        getMembers();
     }, [])
 
     const getProfile = async () => {
@@ -23,6 +24,15 @@ const Home = ({ setUser, setProfile }) => {
             setUser(res.data.data.username)
             setProfile(res.data.data.profile)
         } else {
+            alert("failed")
+        }
+    }
+    const getMembers = async()=>{
+        const res = await axios.get("http://localhost:3000/api/getmembers",{ headers: { "Authorization": `Bearer ${value}` } })
+        if(res.status==201){
+            console.log(res);
+        }
+        else{
             alert("failed")
         }
     }

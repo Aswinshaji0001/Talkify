@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bebas+Neue&family=Bodoni+Moda+SC:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rouge+Script&display=swap');
-
 .home {
     height: 50vh;
     width: 100%;
@@ -8,12 +6,12 @@
     align-items: center;
 
     .content {
-        width: 68%;
+        width: 73%;
         height: 45vh;
         text-align: center;
         padding: 1em;
-        background-color: #1585e8;
-        border: 1px solid black;
+        background-color: #E9F1FA;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
         position: relative;
 
         .heads {
@@ -21,7 +19,8 @@
             font-family: "Montserrat", serif;
             font-weight: 700;
             font-size: 20px;
-            color:rgb(0, 255, 200);
+            color: rgb(0, 0, 0);
+            text-decoration: none; /* Remove text decoration */
         }
 
         .user-list {
@@ -36,17 +35,18 @@
             .user-item {
                 display: flex;
                 align-items: center;
-                background-color: #fbfbfb;
+                background-color: #00ABE4;
 
                 width: 102%;
                 padding: 1px;   
                 border-radius: 8px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
                 transition: transform 0.3s ease-in-out;
-                color: black;
-               
-
-               
+                color: rgb(255, 255, 255);
+                a{
+                    text-decoration: none;
+                    color: white;
+                }
 
                 .profile-pic {
                     width: 50px;
@@ -66,18 +66,19 @@
                         font-family: "Dosis", sans-serif;
                         font-weight: 600;
                         font-size: 18px;
-                        color: rgb(0, 0, 0);
+                        color: rgb(255, 255, 255);
+                        text-decoration: none; /* Remove text decoration */
                     }
                 }
-            
             }
         }
-        .chat{
+
+        .chat {
             position: absolute;
             right: 0;
             width: 70px;
             height: 70px;
-            img{
+            img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;

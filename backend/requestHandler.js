@@ -199,8 +199,8 @@ export async function getMessages(req, res) {
     const uid = req.user.userId; // Current logged-in user's ID
     const { id } = req.params; // Chat partner's ID from URL parameter
 
-    console.log("UID (current user):", uid);
-    console.log("ID (chat partner):", id);
+    // console.log("UID (current user):", uid);
+    // console.log("ID (chat partner):", id);
 
     // Query to find messages exchanged between the two users
     const data = await chatSchema.find({
@@ -211,14 +211,25 @@ export async function getMessages(req, res) {
     }).sort({ createdAt: 1 }); 
 
     if (data.length === 0) {
-      console.log("No messages found.");
+      // console.log("No messages found.");
     } else {
-      console.log("Messages found:", data);
+      // console.log("Messages found:", data);
     }
 
     return res.status(200).send(data); // Return messages to the client
   } catch (error) {
     console.error("Error fetching messages:", error);
     return res.status(500).send({ msg: error.message }); // Return error if any
+  }
+}
+
+export async function getMembers(req, res) {
+  try {
+    const id = req.user.userId;
+    const data = await memberSchema.distinct("receiverId", { senderId: id });
+
+    return res.status(201).send(data); // Return unique members
+  } catch (error) {
+    return res.status(404).send({ msg: error });
   }
 }

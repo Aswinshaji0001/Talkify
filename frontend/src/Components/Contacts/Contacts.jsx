@@ -39,7 +39,7 @@ const Contacts = ({ setUser, setProfile }) => {
                     {user.map((users)=>(
                         <div className="user-item">
                             <div className="profile-pic">
-                                <img src="/logo.png" alt="user"/>
+                                <img src={users.profile} alt="user"/>
                             </div>
                             <div className="user-info">
                                 <h3><Link to={`/chat/${users._id}`}>{users.username}</Link></h3>
