@@ -8,4 +8,7 @@ router.route("/signup").post(u.signUp);
 router.route("/verify").post(u.verifyMail);
 router.route("/reset").post(u.resetPassword);
 router.route("/profile").get(Auth,u.profile);
+router.route("/getallcontacts").get(Auth,u.getAllContacts);
+router.route("/sendmsg").post(Auth,u.sendMessage);
+router.route("/messages/:id").get(Auth,u.getMessages);
 export default router;

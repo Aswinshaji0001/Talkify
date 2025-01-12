@@ -1,4 +1,6 @@
 import loginSchema from './models/Login.model.js'
+import chatSchema from './models/chats.model.js'
+import memberSchema from './models/chatmembers.model.js'
 import bcrypt from "bcrypt";
 import pkg from "jsonwebtoken";
 import nodemailer from "nodemailer";
@@ -158,7 +160,6 @@ export async function signUp(req, res) {
 export async function profile(req,res) {
     try {
          const id = req.user.userId;
-         console.log(id);
         const data = await loginSchema.findOne({_id:id})
         return res.status(201).send({data})
     } catch (error) {
@@ -166,4 +167,58 @@ export async function profile(req,res) {
 
     }
     
+}
+
+export async function getAllContacts(req,res) {
+  try {
+        const id = req.user.userId;
+        const data = await loginSchema.find({ _id: { $ne: id } });
+        return res.status(201).send(data)
+  } catch (error) {
+    return res.status(404).send({msg:error}); 
+  }
+  
+}
+
+export async function sendMessage(req,res) {
+  try {
+        const uid = req.user.userId;
+        const {recieverId,message,date,time} = req.body;
+        const data = await chatSchema.create({senderId:uid,recieverId,message,date,time})   
+        const data1 = await memberSchema.create({senderId:uid,recieverId})
+        return res.status(201).send({data,data1})   
+ 
+  } catch (error) {
+    return res.status(404).send({msg:error}); 
+
+  }
+}
+
+export async function getMessages(req, res) {
+  try {
+    const uid = req.user.userId; // Current logged-in user's ID
+    const { id } = req.params; // Chat partner's ID from URL parameter
+
+    console.log("UID (current user):", uid);
+    console.log("ID (chat partner):", id);
+
+    // Query to find messages exchanged between the two users
+    const data = await chatSchema.find({
+      $or: [
+        { senderId: uid, recieverId: id }, // Current user as sender
+        { senderId: id, recieverId: uid }, // Current user as receiver
+      ]
+    }).sort({ createdAt: 1 }); 
+
+    if (data.length === 0) {
+      console.log("No messages found.");
+    } else {
+      console.log("Messages found:", data);
+    }
+
+    return res.status(200).send(data); // Return messages to the client
+  } catch (error) {
+    console.error("Error fetching messages:", error);
+    return res.status(500).send({ msg: error.message }); // Return error if any
+  }
 }

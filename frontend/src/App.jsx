@@ -8,7 +8,9 @@ import Signup from './Components/Signup/Signup';
 import Email from './Components/Email/Email';
 import Forgot from './Components/Forgot/Forgot';
 import Home from './Components/Home/Home';
-import Nav from './Components/Nav/Nav'
+import Nav from './Components/Nav/Nav';
+import Contacts from './Components/Contacts/Contacts';
+import Chat from './Components/Chat/Chat';
 
 function App() {
   const [user,setUser]=useState("")
@@ -21,6 +23,8 @@ function App() {
      <Routes>
       <Route path='/login' Component={Login}></Route>
       <Route path='/' element={<Home setUser={setUser} setProfile={setProfile}/>}></Route>
+      <Route path='/contacts' element={<Contacts setUser={setUser} setProfile={setProfile}/>}></Route>
+      <Route path='/chat/:id' element={<Chat setUser={setUser} setProfile={setProfile}/>}></Route>
       <Route path='/signup' Component={Signup}></Route>
       <Route path='/email' Component={Email}></Route>
       <Route path='/forgot' Component={Forgot}></Route>

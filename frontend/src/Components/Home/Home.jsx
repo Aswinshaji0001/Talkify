@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import '../Home/Home.scss'
 import axios from 'axios'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Home = ({ setUser, setProfile }) => {
+    const navigate = useNavigate();
     const value = localStorage.getItem('Auth')
+  
 
     useEffect(() => {
         getProfile();
@@ -14,6 +17,9 @@ const Home = ({ setUser, setProfile }) => {
             headers: { "Authorization": `Bearer ${value}` }
         })
         if (res.status === 201) {
+            if(!value){
+                navigate("/login")
+            }
             setUser(res.data.data.username)
             setProfile(res.data.data.profile)
         } else {
@@ -31,7 +37,7 @@ const Home = ({ setUser, setProfile }) => {
                                 <img src="/logo.png" alt="user"/>
                             </div>
                             <div className="user-info">
-                                <h3>Felix</h3>
+                                <Link to="/chat"><h3>Felix</h3></Link>
                             </div>
                         </div>
                         <div className="user-item">
@@ -62,7 +68,7 @@ const Home = ({ setUser, setProfile }) => {
                         
                 </div>
                 <div className="chat">
-                            <img src="/chat.png" alt="" />
+                            <Link to="/contacts"><img src="/chat.png" alt="" /></Link>
                         </div>
             </div>
         </div>
