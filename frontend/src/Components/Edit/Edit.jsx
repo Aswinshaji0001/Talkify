@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Edit.scss";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const Edit = ({setUser,setProfile}) => {
   const value = localStorage.getItem("Auth");
+  const navigate = useNavigate();
   const [details, setDetails] = useState({
     profile: "",
     username: "",
@@ -76,8 +79,12 @@ const Edit = ({setUser,setProfile}) => {
       alert("Failed");
     }
   };
-console.log(details);
-
+  const handleLogout = ()=>{
+    console.log("HAI");
+    
+    localStorage.removeItem('Auth')
+    navigate("/login")
+  }
   return (
     <div className="edit">
       <div className="card">
@@ -121,7 +128,7 @@ console.log(details);
         </div>
 
         {/* Form Section */}
-        <form onSubmit={handleSubmit} className="card__form">
+        <form className="card__form" onSubmit={handleSubmit}>
           <div className="card__input-wrapper">
             <input
               type="text"
@@ -148,8 +155,13 @@ console.log(details);
 
           <div className="card__wrapper">
             <button type="submit" className="card__btn card__btn-solid">Save Changes</button>
+
           </div>
         </form>
+        <div className="cardg">
+        <button type="submit" className="cardsss" onClick={handleLogout}>Logout</button>
+        </div>
+
       </div>
     </div>
   );

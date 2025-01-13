@@ -266,3 +266,19 @@ export async function updateUser(req,res) {
   }
   
 }
+
+export async function deleteMessage(req,res) {
+  try {
+        
+        
+        const id = req.user.userId;
+        const { mid } = req.params;
+        const data = await chatSchema.deleteOne({_id:mid,senderId:id})
+        return res.status(201).send(data)    
+
+  } catch (error) {
+    return res.status(404).send({ msg: error });
+
+  }
+  
+}
