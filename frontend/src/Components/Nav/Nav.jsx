@@ -1,5 +1,7 @@
 import React from 'react'
 import '../Nav/Nav.scss'
+import { Link } from 'react-router-dom'
+
 const Nav = ({user,profile}) => {
     console.log(user);
     console.log(profile);
@@ -16,7 +18,7 @@ const Nav = ({user,profile}) => {
         <div className="right">
             <h1>{user}</h1>
             <div className="profilee">
-                <img src={profile} alt="profile image" />
+                <Link to="/edit"><img src={profile} alt="profile image" /></Link>
             </div>
         </div>
       </nav>

@@ -241,3 +241,28 @@ export async function getMembers(req, res) {
     return res.status(404).send({ msg: error });
   }
 }
+
+export async function getUser(req,res) {
+  try {
+        const id = req.user.userId;
+        const data = await loginSchema.findOne({_id:id})
+        return res.status(201).send(data)   
+  } catch (error) {
+    return res.status(404).send({ msg: error });
+
+  }
+  
+}
+
+export async function updateUser(req,res) {
+  try {
+        const id =req.user.userId;
+        const {...details} = req.body;
+        const data = await loginSchema.updateOne({_id:id},{$set:{...details}})
+        return res.status(201).send(data)    
+  } catch (error) {
+    return res.status(404).send({ msg: error });
+
+  }
+  
+}

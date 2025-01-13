@@ -12,4 +12,6 @@ router.route("/getallcontacts").get(Auth,u.getAllContacts);
 router.route("/sendmsg").post(Auth,u.sendMessage);
 router.route("/messages/:id").get(Auth,u.getMessages);
 router.route("/getmembers").get(Auth,u.getMembers);
+router.route("/getuser").get(Auth,u.getUser);
+router.route("/updateuser").put(Auth,u.updateUser);
 export default router;

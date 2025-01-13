@@ -11,7 +11,7 @@ import Home from './Components/Home/Home';
 import Nav from './Components/Nav/Nav';
 import Contacts from './Components/Contacts/Contacts';
 import Chat from './Components/Chat/Chat';
-import Edit from './Components/Edit/Edit'
+import Edit from './Components/Edit/Edit'; 
 
 function App() {
   const [user,setUser]=useState("")
@@ -27,7 +27,7 @@ function App() {
       <Route path='/contacts' element={<Contacts setUser={setUser} setProfile={setProfile}/>}></Route>
       <Route path='/chat/:id' element={<Chat setUser={setUser} setProfile={setProfile}/>}></Route>
       <Route path='/signup' Component={Signup}></Route>
-      <Route path='/edit' Component={Edit}></Route>
+      <Route path='/edit' element={<Edit setUser={setUser} setProfile={setProfile}/>}></Route>
       <Route path='/email' Component={Email}></Route>
       <Route path='/forgot' Component={Forgot}></Route>
      </Routes>
