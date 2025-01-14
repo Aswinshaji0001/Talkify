@@ -13,6 +13,7 @@ router.route("/sendmsg").post(Auth,u.sendMessage);
 router.route("/messages/:id").get(Auth,u.getMessages);
 router.route("/getmembers").get(Auth,u.getMembers);
 router.route("/getuser").get(Auth,u.getUser);
+router.route("/getuserp/:id").get(Auth,u.getUserP);
 router.route("/updateuser").put(Auth,u.updateUser);
 router.route("/deletemsg/:mid").delete(Auth,u.deleteMessage);
 

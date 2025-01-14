@@ -1,0 +1,177 @@
+$main-color: #000;
+$submain-color: #78858f;
+$bg-color: #fff;
+
+.edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .card {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    position: relative;
+    width: 300px;
+    height: 360px; // Increased height to fit form and avatar comfortably
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    background: $bg-color;
+    padding: 20px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+    &__img {
+      height: 180px;
+      width: 100%;
+      object-fit: cover;
+
+      svg {
+        height: 100%;
+        border-radius: 20px 20px 0 0;
+      }
+    }
+
+    &__avatar {
+      position: absolute;
+      width: 114px;
+      height: 114px;
+      background: $bg-color;
+      border-radius: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 10%;
+
+      .card__avatar-img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+        background-position: center;
+        cursor: pointer;
+      }
+    }
+
+    &__title {
+      margin-top: 70px; // Added extra space for proper alignment
+      font-weight: 500;
+      font-size: 18px;
+      color: $main-color;
+    }
+
+    &__subtitle {
+      margin-top: 5px;
+      font-weight: 400;
+      font-size: 15px;
+      color: $submain-color;
+    }
+
+    .card__form {
+      width: 100%;
+      margin-top: 20px;
+      text-align: center;
+
+      .card__input-wrapper {
+        width: 100%;
+        margin-bottom: 10px;
+
+        label {
+          font-size: 14px;
+          color: $main-color;
+          display: block;
+          margin-bottom: 5px;
+        }
+
+        input {
+          width: 90%;
+          padding: 10px;
+          font-size: 14px;
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          color: $main-color;
+          background: $bg-color;
+          transition: border 0.3s;
+
+          &:focus {
+            border-color: $main-color;
+            outline: none;
+          }
+        }
+      }
+
+      .card__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      .card__btn {
+        margin-top: 15px;
+        width: 120px;
+        height: 35px;
+        border: 2px solid #00abe4;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 12px;
+        color: #00abe4;
+        background: #00abe4;
+        text-transform: uppercase;
+        transition: all 0.3s;
+
+        &:hover {
+          background: $main-color;
+          color: $bg-color;
+        }
+
+        &-solid {
+          background: #00abe4;
+          color: $bg-color;
+
+          &:hover {
+            background: $bg-color;
+            color: $main-color;
+          }
+        }
+      }
+    }
+
+    .cardg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 5px;
+      .cardsss {
+        width: 120px;
+        height: 35px;
+        text-align: center;
+        background-color: #ff4d4d; 
+        color: #ffffff; 
+        background-color: #00abe4;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 12px 24px; 
+        border: none;
+        border-radius: 4px;
+        // Rounded corners
+        cursor: pointer; // Pointer cursor to indicate interactivity
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+        transition: all 0.3s ease-in-out; // Smooth transitions for hover effects
+
+        &:hover {
+          background-color: #e60000; // Darker red on hover
+          transform: scale(1.05); // Slightly increase size on hover
+          box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); // Enhance shadow on hover
+        }
+
+        &:active {
+          background-color: #cc0000; // Even darker red on click
+          transform: scale(1); // Reset scale to default on click
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); // Slightly reduced shadow
+        }
+      }
+    }
+  }
+}

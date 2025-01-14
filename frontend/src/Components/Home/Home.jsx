@@ -54,7 +54,7 @@ console.log(chatMembers);
                     chatMembers.map((member,ind)=>
                         <div className="user-item">
                             <div className="profile-pic">
-                                <img src={member.profile} alt="user"/>
+                            <Link to={`/profile/${member._id}`}><img src={member.profile} alt="user"/></Link>
                             </div>
                             <div className="user-info">
                                 <Link to={`/chat/${member._id}`}><h3>{member.username}</h3></Link>

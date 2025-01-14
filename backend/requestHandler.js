@@ -282,3 +282,15 @@ export async function deleteMessage(req,res) {
   }
   
 }
+
+export async function getUserP(req,res) {
+  try {
+          const {id} = req.params;
+          const data = await loginSchema.findOne({_id:id})
+          return res.status(201).send(data)    
+  } catch (error) {
+    return res.status(404).send({ msg: error });
+
+  }
+  
+}

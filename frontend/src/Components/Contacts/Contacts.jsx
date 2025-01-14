@@ -38,9 +38,9 @@ const Contacts = ({ setUser, setProfile }) => {
                 <div className="user-list">
                     {user.map((users)=>(
                         <div className="user-item">
-                            <div className="profile-pic">
+                            <Link to={`/profile/${users._id}`}><div className="profile-pic">
                                 <img src={users.profile} alt="user"/>
-                            </div>
+                            </div></Link>
                             <div className="user-info">
                                 <h3><Link to={`/chat/${users._id}`}>{users.username}</Link></h3>
                             </div>
