@@ -13,7 +13,7 @@ const Nav = ({user,profile}) => {
             <div className="logo">
                 <img src="/logo.png" alt="" />
             </div>
-                <h1 className='monserat'>TALKIFY.com</h1>
+                <Link to="/"><h1 className='monserat'>TALKIFY.com</h1></Link>
         </div>
         <div className="right">
             <h1>{user}</h1>

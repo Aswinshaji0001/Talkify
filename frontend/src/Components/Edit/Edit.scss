@@ -88,7 +88,7 @@ $bg-color: #fff;
           padding: 10px;
           font-size: 14px;
           border: 1px solid #ccc;
-          border-radius: 4px;
+          border-radius: 10px;
           color: $main-color;
           background: $bg-color;
           transition: border 0.3s;
@@ -112,12 +112,12 @@ $bg-color: #fff;
         margin-top: 15px;
         width: 120px;
         height: 35px;
-        border: 2px solid $main-color;
+        border: 2px solid #00abe4;
         border-radius: 4px;
         font-weight: 700;
         font-size: 12px;
-        color: $main-color;
-        background: $bg-color;
+        color: #00abe4;
+        background: #00abe4;
         text-transform: uppercase;
         transition: all 0.3s;
 
@@ -127,7 +127,7 @@ $bg-color: #fff;
         }
 
         &-solid {
-          background: $main-color;
+          background: #00abe4;
           color: $bg-color;
 
           &:hover {
@@ -146,14 +146,14 @@ $bg-color: #fff;
       .cardsss {
         width: 120px;
         height: 35px;
-        background-color: #ff4d4d; // Bright red for visibility
-        color: #fff; // White text for contrast
-        font-size: 18px;
-        font-weight: bold;
+        text-align: center;
+        background-color: #ff4d4d; 
+        color: #ffffff; 
+        background-color: #00abe4;
+        font-size: 12px;
         font-weight: 700;
-        // Highlight the button
-        padding: 12px 24px; // Adequate padding for a click-friendly button
-        border: none; // Remove default border
+        padding: 12px 24px; 
+        border: none;
         border-radius: 4px;
         // Rounded corners
         cursor: pointer; // Pointer cursor to indicate interactivity

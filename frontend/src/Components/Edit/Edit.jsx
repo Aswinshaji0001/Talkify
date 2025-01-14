@@ -159,7 +159,7 @@ const Edit = ({setUser,setProfile}) => {
           </div>
         </form>
         <div className="cardg">
-        <button type="submit" className="cardsss" onClick={handleLogout}>Logout</button>
+        <button type="submit" className="cardsss" onClick={handleLogout}>LOGOUT</button>
         </div>
 
       </div>

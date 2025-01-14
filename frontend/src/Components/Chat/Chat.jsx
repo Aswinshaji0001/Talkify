@@ -12,8 +12,7 @@ const Chat = ({ setUser, setProfile }) => {
     const [newMessage, setNewMessage] = useState('');
     const [userid, setUserId] = useState('');
     const [pressTimer, setPressTimer] = useState(null); // To track long press timer
-   
-    
+
     useEffect(() => {
         getProfile();
         fetchMessages();
@@ -57,7 +56,7 @@ const Chat = ({ setUser, setProfile }) => {
     const sendMessage = async () => {
         if (newMessage.trim()) {
             const currentDate = new Date();
-            const [date,time]=currentDate.toLocaleString().split(', ')
+            const [date, time] = currentDate.toLocaleString().split(', ');
             const messageData = {
                 message: newMessage,
                 recieverId: id,
@@ -72,6 +71,15 @@ const Chat = ({ setUser, setProfile }) => {
                 if (res.status === 201) {
                     setMessages((prevMessages) => [...prevMessages, res.data]);
                     setNewMessage('');
+                    // Show success toast after sending the message
+                    toast.success('Message sent successfully', {
+                        position: "top-center",  // Center the toast
+                        autoClose: 100,         // Set auto close delay (3 seconds)
+                        hideProgressBar: true,   // Hide progress bar
+                        closeButton: false,      // Optionally hide the close button
+                        draggable: false,        // Disable dragging
+                        theme: "light"           // Use light theme
+                    });
                 }
             } catch (error) {
                 console.error("Error sending message", error);
