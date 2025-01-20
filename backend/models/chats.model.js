@@ -5,6 +5,7 @@ const chatSchema=new mongoose.Schema({
     recieverId:{type:String},
     message:{type:String},
     date:{type:String},
-    time:{type:String}
+    time:{type:String},
+    seen:{type:Boolean}
 });
 export default mongoose.model.chats||mongoose.model("chats",chatSchema);

@@ -184,7 +184,11 @@ export async function sendMessage(req,res) {
   try {
         const uid = req.user.userId;
         const {recieverId,message,date,time} = req.body;
-        const data = await chatSchema.create({senderId:uid,recieverId,message,date,time})   
+        console.log(recieverId);
+        
+        const data = await chatSchema.create({senderId:uid,recieverId:recieverId,message,date,time,seen:false})  
+        console.log(data);
+         
         const data1 = await memberSchema.create({senderId:uid,recieverId:recieverId})
         return res.status(201).send({data,data1})   
  
@@ -196,30 +200,29 @@ export async function sendMessage(req,res) {
 
 export async function getMessages(req, res) {
   try {
-    const uid = req.user.userId; // Current logged-in user's ID
-    const { id } = req.params; // Chat partner's ID from URL parameter
-
-    // console.log("UID (current user):", uid);
-    // console.log("ID (chat partner):", id);
-
-    // Query to find messages exchanged between the two users
+    const uid = req.user.userId; 
+    const { id } = req.params; 
+    const unseen=await chatSchema.find({
+      senderId:id,recieverId:uid,seen:false});
+    if(unseen)
+    {
+        const updateunseen=await chatSchema.updateMany({senderId:id,recieverId:uid},{$set:{seen:true}});
+        
+    }
     const data = await chatSchema.find({
       $or: [
-        { senderId: uid, recieverId: id }, // Current user as sender
-        { senderId: id, recieverId: uid }, // Current user as receiver
+        { senderId: uid, recieverId: id },
+        { senderId: id, recieverId: uid }, 
       ]
     }).sort({ createdAt: 1 }); 
 
     if (data.length === 0) {
-      // console.log("No messages found.");
     } else {
-      // console.log("Messages found:", data);
     }
-
-    return res.status(200).send(data); // Return messages to the client
+    return res.status(200).send(data); 
   } catch (error) {
     console.error("Error fetching messages:", error);
-    return res.status(500).send({ msg: error.message }); // Return error if any
+    return res.status(500).send({ msg: error.message }); 
   }
 }
 
@@ -229,14 +232,33 @@ export async function getMembers(req, res) {
     const receivers=await memberSchema.find({$or:[{senderId:_id},{recieverId:_id}]});
         const chatMemberPromises = receivers.map(async (receiver) => {
             if(receiver.senderId==_id)
-                return await loginSchema.findOne({ _id: receiver.recieverId },{username:1,profile:1});
+                return await loginSchema.findOne({ _id: receiver.recieverId},{username:1,profile:1});
             if(receiver.recieverId==_id)
                 return await loginSchema.findOne({ _id: receiver.senderId },{username:1,profile:1});
         });
         const chatMembers = await Promise.all(chatMemberPromises);  
-        console.log(chatMembers);
+        const chatmembers=Array.from(new Map(chatMembers.map(member => [member.username, member])).values()).reverse()  
+    
         
-    return res.status(201).send({chatMembers}); 
+        const countPromises=chatmembers.map(async(member)=>{
+          
+          return await chatSchema.countDocuments({senderId:member._id,seen:false})
+      })
+      const counts=await Promise.all(countPromises);
+      console.log(counts);
+      
+      const messagePromises=chatmembers.map(async(member)=>{
+
+        
+        
+        return await chatSchema.findOne({$or:[{senderId:_id,recieverId:member._id},{senderId:member._id,recieverId:_id}]},{message:1,seen:1}).sort({ _id: -1 })
+    })
+
+    const lmessages=await Promise.all(messagePromises);
+    console.log(lmessages);
+    
+    
+    return res.status(201).send({chatmembers,counts,lmessages}); 
   } catch (error) {
     return res.status(404).send({ msg: error });
   }
