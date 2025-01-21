@@ -156,7 +156,7 @@ const Chat = ({ setUser, setProfile }) => {
                         >
                             <h2>{message.message} {message.sender}</h2>
                             <span className="time">
-                                <h5>{message.date}</h5>
+                                <h5></h5>
                             </span>
                             <div>
                                 <h5>{message.time}</h5>
